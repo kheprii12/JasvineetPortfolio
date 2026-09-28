@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jasvineet Singh — Mechanical Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EEF1EF;
+    --sheet:#FFFFFF;
+    --ink:#182029;
+    --ink-soft:#4C5762;
+    --line:#B9C3C6;
+    --blue:#1F4E79;
+    --blue-soft:#6C8AA6;
+    --orange:#D6511C;
+    --green:#3F7A5D;
+    --radius:2px;
+    --maxw:1180px;
+    --shadow: 0 1px 0 rgba(24,32,41,0.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0C2038;
+      --sheet:#0F2A48;
+      --ink:#E8F1FA;
+      --ink-soft:#9FB6CC;
+      --line:#2C4E6E;
+      --blue:#8FC1E8;
+      --blue-soft:#5C87A8;
+      --orange:#FF8452;
+      --green:#7ED8AC;
+      --shadow: 0 1px 0 rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0C2038;
+    --sheet:#0F2A48;
+    --ink:#E8F1FA;
+    --ink-soft:#9FB6CC;
+    --line:#2C4E6E;
+    --blue:#8FC1E8;
+    --blue-soft:#5C87A8;
+    --orange:#FF8452;
+    --green:#7ED8AC;
+    --shadow: 0 1px 0 rgba(0,0,0,0.35);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans", Arial, sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    transition:background .3s ease, color .3s ease;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .mono{font-family:"IBM Plex Mono", monospace;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  section{scroll-margin-top:78px;}
+
+  ::selection{background:var(--orange); color:#fff;}
+  :focus-visible{outline:2px solid var(--orange); outline-offset:3px;}
+
+  /* ---------- Header / title-block nav ---------- */
+  header.topbar{
+    position:sticky; top:0; z-index:50;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:var(--maxw); margin:0 auto; padding:0 28px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:58px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:"Big Shoulders Display", sans-serif;
+    font-weight:700; font-size:20px; letter-spacing:.02em;
+    text-decoration:none; color:var(--ink);
+  }
+  .brand .tag{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:10px; font-weight:500; letter-spacing:.08em;
+    color:var(--ink-soft);
+    border:1px solid var(--line);
+    padding:3px 6px;
+    border-radius:var(--radius);
+  }
+  nav.links{display:flex; align-items:center; gap:26px;}
+  nav.links a{
+    font-size:14px; text-decoration:none; color:var(--ink-soft);
+    position:relative; padding:4px 0;
+  }
+  nav.links a:hover{color:var(--ink);}
+  nav.links a::after{
+    content:""; position:absolute; left:0; right:0; bottom:0;
+    height:2px; background:var(--orange);
+    transform:scaleX(0); transform-origin:left;
+    transition:transform .2s ease;
+  }
+  nav.links a:hover::after{transform:scaleX(1);}
+
+  .theme-toggle{
+    display:flex; align-items:center; gap:8px;
+    font-family:"IBM Plex Mono", monospace; font-size:11px;
+    letter-spacing:.05em; color:var(--ink-soft);
+    background:none; border:1px solid var(--line); cursor:pointer;
+    padding:6px 10px; border-radius:var(--radius);
+  }
+  .theme-toggle:hover{border-color:var(--blue-soft); color:var(--ink);}
+  .theme-toggle .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--orange);
+  }
+  .menu-btn{display:none; background:none; border:1px solid var(--line); padding:8px 10px; border-radius:var(--radius);}
+  .menu-btn span, .menu-btn::before, .menu-btn::after{
+    content:""; display:block; width:16px; height:2px; background:var(--ink); margin:3px 0;
+  }
+
+  @media (max-width:820px){
+    nav.links{
+      position:absolute; top:58px; left:0; right:0;
+      background:var(--paper); border-bottom:1px solid var(--line);
+      flex-direction:column; align-items:flex-start; gap:0;
+      padding:8px 28px 14px; display:none;
+    }
+    nav.links.open{display:flex;}
+    nav.links a{padding:10px 0; width:100%;}
+    .menu-btn{display:block;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:74px 0 54px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.15fr .85fr; gap:40px; align-items:center;
+  }
+  .kicker{
+    font-family:"IBM Plex Mono", monospace; font-size:12px; letter-spacing:.06em;
+    color:var(--ink-soft); display:flex; gap:10px; flex-wrap:wrap; margin-bottom:18px;
+  }
+  .kicker span{border:1px solid var(--line); padding:4px 8px; border-radius:var(--radius);}
+  h1.name{
+    font-family:"Big Shoulders Display", sans-serif;
+    font-weight:800;
+    font-size:clamp(52px, 8vw, 92px);
+    line-height:.92;
+    margin:0 0 6px;
+    letter-spacing:.005em;
+  }
+  .role{
+    font-size:clamp(18px,2.4vw,22px);
+    color:var(--blue);
+    font-weight:600;
+    margin:0 0 20px;
+  }
+  .lede{
+    max-width:52ch;
+    font-size:17px;
+    color:var(--ink-soft);
+    margin:0 0 30px;
+  }
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:34px;}
+  .btn{
+    font-size:15px; font-weight:600; text-decoration:none;
+    padding:12px 20px; border-radius:var(--radius);
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s ease, opacity .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--ink); color:var(--paper);}
+  .btn-ghost{border:1px solid var(--ink); color:var(--ink); background:transparent;}
+
+  .titleblock{
+    display:grid; grid-template-columns:repeat(2,1fr);
+    border:1px solid var(--line); border-radius:var(--radius);
+    max-width:520px; overflow:hidden;
+  }
+  .titleblock div{
+    padding:10px 14px; border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .titleblock div:nth-child(2n){border-right:none;}
+  .titleblock div:nth-last-child(-n+2){border-bottom:none;}
+  .titleblock .k{font-family:"IBM Plex Mono",monospace; font-size:10px; color:var(--ink-soft); letter-spacing:.06em; margin-bottom:3px;}
+  .titleblock .v{font-size:13.5px; font-weight:500;}
+
+  .hero-art{position:relative;}
+  .hero-art svg{width:100%; height:auto;}
+  .gear-spin{animation:spin 40s linear infinite; transform-origin:center;}
+  .gear-spin-rev{animation:spinrev 30s linear infinite; transform-origin:center;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  @keyframes spinrev{to{transform:rotate(-360deg);}}
+  @media (prefers-reduced-motion:reduce){
+    .gear-spin, .gear-spin-rev{animation:none;}
+  }
+
+  .ruler{
+    height:26px; width:100%;
+    background-image: repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 40px);
+    background-position:left center;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+
+  /* ---------- Section headings ---------- */
+  .sec-head{
+    display:flex; align-items:baseline; gap:14px; margin:0 0 34px;
+  }
+  .sec-num{
+    font-family:"IBM Plex Mono", monospace; font-size:13px; color:var(--orange);
+  }
+  h2.sec-title{
+    font-family:"Big Shoulders Display", sans-serif;
+    font-weight:700; font-size:clamp(30px,4vw,42px);
+    margin:0;
+  }
+  .section{padding:64px 0;}
+  .section.alt{background:var(--sheet); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start;}
+  .about-grid p{color:var(--ink-soft); margin:0 0 16px; max-width:60ch;}
+  .about-grid p strong{color:var(--ink); font-weight:600;}
+
+  table.bom{width:100%; border-collapse:collapse; font-size:14px;}
+  table.bom caption{
+    text-align:left; font-family:"IBM Plex Mono",monospace; font-size:11px;
+    color:var(--ink-soft); letter-spacing:.06em; margin-bottom:10px;
+  }
+  table.bom th, table.bom td{
+    text-align:left; padding:9px 10px; border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  table.bom th{
+    font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:11px;
+    color:var(--ink-soft); letter-spacing:.05em; border-bottom:1px solid var(--ink-soft);
+  }
+
+  /* ---------- Timeline ---------- */
+  .timeline{position:relative; margin-top:10px;}
+  .timeline::before{
+    content:""; position:absolute; left:112px; top:6px; bottom:6px; width:1px; background:var(--line);
+  }
+  .trow{display:grid; grid-template-columns:112px 26px 1fr; gap:0; padding:22px 0; border-bottom:1px solid var(--line);}
+  .trow:first-of-type{padding-top:0;}
+  .trow:last-of-type{border-bottom:none;}
+  .trow .date{font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--ink-soft); padding-top:2px;}
+  .trow .node{position:relative;}
+  .trow .node::before{
+    content:""; position:absolute; left:6px; top:6px; width:9px; height:9px;
+    background:var(--paper); border:2px solid var(--orange); border-radius:50%;
+  }
+  .trow h3{margin:0 0 6px; font-size:17px; font-weight:600;}
+  .trow .org{color:var(--blue); font-weight:600; font-size:14px; margin-bottom:6px;}
+  .trow p{margin:0; color:var(--ink-soft); font-size:14.5px; max-width:64ch;}
+  @media (max-width:640px){
+    .timeline::before{left:0; display:none;}
+    .trow{grid-template-columns:1fr; gap:4px;}
+    .trow .node{display:none;}
+  }
+
+  .vol-line{
+    margin-top:26px; padding-top:22px; border-top:1px dashed var(--line);
+    font-size:14px; color:var(--ink-soft);
+  }
+  .vol-line span.k{font-family:"IBM Plex Mono",monospace; color:var(--ink); margin-right:10px;}
+
+  /* ---------- Projects ---------- */
+  .proj-grid{display:grid; grid-template-columns:1fr 1fr; gap:26px;}
+  @media (max-width:820px){.proj-grid{grid-template-columns:1fr;}}
+  .sheet{
+    border:1px solid var(--line); border-radius:var(--radius); background:var(--sheet);
+    display:flex; flex-direction:column; overflow:hidden;
+  }
+  .sheet-art{
+    padding:22px 22px 4px; background:var(--sheet);
+  }
+  .sheet-art svg{width:100%; height:120px;}
+  .sheet-body{padding:6px 22px 20px;}
+  .sheet-body h3{
+    font-family:"Big Shoulders Display", sans-serif; font-weight:700;
+    font-size:24px; margin:6px 0 4px;
+  }
+  .sheet-body .subtitle{color:var(--blue); font-weight:600; font-size:13.5px; margin-bottom:12px;}
+  .sheet-body ul{margin:0 0 16px; padding-left:18px; color:var(--ink-soft); font-size:14px;}
+  .sheet-body li{margin-bottom:6px;}
+  .sheet-foot{
+    border-top:1px solid var(--line); padding:10px 22px;
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-soft);
+    background:var(--paper);
+  }
+  .sheet-foot b{color:var(--ink); font-weight:500;}
+
+  /* ---------- Vision callout ---------- */
+  .callout{
+    border-left:3px solid var(--orange);
+    padding:6px 0 6px 26px;
+    max-width:74ch;
+  }
+  .callout p{font-size:18px; color:var(--ink); margin:0 0 18px; font-weight:500;}
+  .callout p.small{font-size:15px; color:var(--ink-soft); font-weight:400;}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{display:grid; grid-template-columns:1fr auto; gap:30px; align-items:end;}
+  .contact-grid h2.sec-title{margin-bottom:8px;}
+  .contact-copy{color:var(--ink-soft); max-width:48ch; margin:0;}
+  .contact-actions{display:flex; gap:12px; flex-wrap:wrap;}
+  @media (max-width:700px){.contact-grid{grid-template-columns:1fr;}}
+
+  footer{
+    border-top:1px solid var(--line); padding:26px 0; margin-top:0;
+  }
+  .foot-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+    font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-soft);}
+
+  @media (max-width:820px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-art{order:-1; max-width:340px; margin:0 auto 20px;}
+    .about-grid{grid-template-columns:1fr;}
+    .contact-actions{justify-content:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">J. SINGH <span class="tag">MECH ENG</span></a>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#vision">Vision</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle blueprint mode">
+        <span class="dot"></span><span id="themeLabel">BLUEPRINT MODE</span>
+      </button>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu"></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="kicker">
+          <span>4TH YEAR — YORK UNIVERSITY</span>
+          <span>TORONTO, CANADA</span>
+        </div>
+        <h1 class="name">JASVINEET<br>SINGH</h1>
+        <p class="role">Mechanical Engineering Student</p>
+        <p class="lede">I design mechanisms, model them in CAD, and stress-test them before anything gets built — landing gear, gear trains, sun-tracking solar rigs, structures rated for hurricane wind loads.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#projects">View projects</a>
+          <a class="btn btn-ghost" href="mailto:jasvineet16@gmail.com">Get in touch</a>
+        </div>
+        <div class="titleblock">
+          <div><div class="k">STATUS</div><div class="v">Process Eng. Co-op, Matcor</div></div>
+          <div><div class="k">PROGRAM</div><div class="v">B.Eng. Mechanical, Lassonde</div></div>
+          <div><div class="k">CORE TOOLS</div><div class="v">SolidWorks · ANSYS · Star-CCM+</div></div>
+          <div><div class="k">CODE</div><div class="v">Python · Java</div></div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="var(--blue)" stroke-width="1.4">
+            <circle cx="160" cy="160" r="140" stroke="var(--line)" stroke-dasharray="2 6"/>
+            <g class="gear-spin">
+              <circle cx="160" cy="160" r="58"/>
+              <circle cx="160" cy="160" r="14" fill="var(--sheet)" stroke="var(--blue)"/>
+              <g stroke-width="1.4">
+                <path d="M160 90 v14 M160 216 v14 M90 160 h14 M216 160 h14 M110 110 l10 10 M200 200 l10 10 M110 210 l10 -10 M200 120 l10 -10"/>
+              </g>
+            </g>
+            <g class="gear-spin-rev">
+              <circle cx="252" cy="100" r="30" stroke="var(--orange)"/>
+              <circle cx="252" cy="100" r="7" fill="var(--sheet)" stroke="var(--orange)"/>
+              <path stroke="var(--orange)" d="M252 63 v10 M252 127 v10 M215 100 h10 M289 100 h10" stroke-width="1.3"/>
+            </g>
+            <path d="M160 102 L160 60" stroke-dasharray="3 4"/>
+            <path d="M198 160 L246 160" stroke-dasharray="3 4"/>
+            <text x="164" y="55" font-family="IBM Plex Mono" font-size="9" fill="var(--ink-soft)" stroke="none">R58</text>
+            <text x="250" y="152" font-family="IBM Plex Mono" font-size="9" fill="var(--ink-soft)" stroke="none">R30</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="ruler" aria-hidden="true"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">About</h2></div>
+      <div class="about-grid">
+        <div>
+          <p>I'm a fourth-year mechanical engineering student at York University, currently on a co-op with <strong>Matcor Metal Fabrication</strong> as a process engineer, working across quality, welding, and process teams on live production problems.</p>
+          <p>I grew up in Scarborough, Ontario, the kind of household where a Saturday off meant a trip to the library to chase down whatever I was curious about that week. That habit never really left — I still default to taking things apart, in CAD or otherwise, to see how they work.</p>
+          <p>Outside of engineering, I sketch, paint, and sculpt. It sounds unrelated, but the process is nearly identical: plan carefully, adapt when something doesn't go to plan, and stay patient with the details until the whole thing holds together.</p>
+        </div>
+        <div>
+          <table class="bom">
+            <caption>SKILLS — BILL OF MATERIALS</caption>
+            <thead>
+              <tr><th>Category</th><th>Item</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>CAD</td><td>SolidWorks, Autodesk</td></tr>
+              <tr><td>Simulation</td><td>ANSYS, Star-CCM+ (CFD + FEA)</td></tr>
+              <tr><td>Analysis</td><td>Stress, stability &amp; kinematics (DOF, mobility)</td></tr>
+              <tr><td>Programming</td><td>Python, Java</td></tr>
+              <tr><td>Systems</td><td>IoT dashboards, embedded sensing</td></tr>
+              <tr><td>Manufacturing</td><td>Welding &amp; quality processes (Matcor)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section alt" id="projects">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Projects</h2></div>
+      <div class="proj-grid">
+
+        <!-- Landing Gear -->
+        <article class="sheet">
+          <div class="sheet-art">
+            <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--blue)" stroke-width="1.6">
+              <path d="M60 20 L60 70 L150 100" stroke-linecap="round"/>
+              <circle cx="150" cy="100" r="16" stroke="var(--orange)"/>
+              <circle cx="150" cy="100" r="4" fill="var(--orange)" stroke="none"/>
+              <path d="M60 70 L110 60" stroke-dasharray="3 3"/>
+              <circle cx="60" cy="20" r="4" fill="var(--sheet)"/>
+              <circle cx="60" cy="70" r="4" fill="var(--sheet)"/>
+              <path d="M40 20 A20 20 0 0 0 40 60" stroke="var(--line)" stroke-dasharray="2 4"/>
+              <path d="M180 100 h70" stroke="var(--line)"/>
+              <path d="M180 94 v12 M250 94 v12" stroke="var(--line)"/>
+              <text x="195" y="90" font-family="IBM Plex Mono" font-size="9" fill="var(--ink-soft)" stroke="none">STROKE</text>
+            </svg>
+          </div>
+          <div class="sheet-body">
+            <div class="subtitle">MECHANISM DESIGN &amp; KINEMATICS</div>
+            <h3>Aircraft Landing Gear</h3>
+            <ul>
+              <li>Modeled a full landing gear assembly through an iterative design process against defined requirements</li>
+              <li>Ran stress calculations and simulations to validate the design</li>
+              <li>Plotted joint trajectories and completed time-response studies of the deployment sequence</li>
+              <li>Calculated degrees of freedom and total mobility of the mechanism</li>
+            </ul>
+          </div>
+          <div class="sheet-foot"><span>SHEET 01/05</span><b>SolidWorks · Kinematics</b></div>
+        </article>
+
+        <!-- Gear Train -->
+        <article class="sheet">
+          <div class="sheet-art">
+            <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--blue)" stroke-width="1.6">
+              <circle cx="90" cy="60" r="34"/>
+              <circle cx="90" cy="60" r="6" fill="var(--sheet)"/>
+              <circle cx="168" cy="60" r="20" stroke="var(--orange)"/>
+              <circle cx="168" cy="60" r="4" fill="var(--orange)" stroke="none"/>
+              <g stroke-width="1.2">
+                <path d="M90 24 v6 M90 90 v6 M54 60 h6 M120 60 h6 M63 33 l4 4 M113 87 l4 4 M63 87 l4 -4 M113 33 l4 -4"/>
+                <path d="M168 38 v5 M168 78 v5 M146 60 h5 M186 60 h5"/>
+              </g>
+              <path d="M124 60 L148 60" stroke="var(--line)" stroke-dasharray="2 4"/>
+              <path d="M220 30 h50 M220 60 h50 M220 90 h50" stroke="var(--line)" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="sheet-body">
+            <div class="subtitle">DRIVETRAIN DESIGN</div>
+            <h3>Wind Turbine Gear Train</h3>
+            <ul>
+              <li>Designed and modeled a gear train for a wind turbine drivetrain</li>
+              <li>Performed stress and safety calculations to size minimum shaft diameters</li>
+              <li>Calculated pitch diameter and tooth count for each gear in the train</li>
+              <li>Designed to meet applicable codes and standards for wind turbine equipment</li>
+            </ul>
+          </div>
+          <div class="sheet-foot"><span>SHEET 02/05</span><b>SolidWorks · Gear Design</b></div>
+        </article>
+
+        <!-- CFD -->
+        <article class="sheet">
+          <div class="sheet-art">
+            <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--blue)" stroke-width="1.6">
+              <rect x="60" y="40" width="26" height="60"/>
+              <rect x="100" y="20" width="26" height="80"/>
+              <g stroke="var(--orange)" stroke-width="1.3">
+                <path d="M20 30 C 60 30, 60 45, 95 45 S 150 55, 220 40" stroke-dasharray="0"/>
+                <path d="M20 60 C 60 60, 55 75, 95 70 S 150 90, 220 65"/>
+                <path d="M20 90 C 60 90, 60 95, 95 95 S 150 100, 220 90"/>
+              </g>
+              <path d="M210 36 l10 4 l-10 4" fill="var(--orange)" stroke="none"/>
+              <path d="M210 61 l10 4 l-10 4" fill="var(--orange)" stroke="none"/>
+            </svg>
+          </div>
+          <div class="sheet-body">
+            <div class="subtitle">COMPUTATIONAL FLUID DYNAMICS</div>
+            <h3>Urban Wind Study</h3>
+            <ul>
+              <li>Modeled two buildings to scale to study pedestrian-level wind conditions</li>
+              <li>Set boundary conditions to reflect real seasonal atmospheric behavior</li>
+              <li>Measured wind speed, vorticity, and surface pressure around each building</li>
+              <li>Proposed geometry changes to bring wind conditions within safety and comfort standards</li>
+            </ul>
+          </div>
+          <div class="sheet-foot"><span>SHEET 03/05</span><b>CFD Simulation</b></div>
+        </article>
+
+        <!-- Solar -->
+        <article class="sheet">
+          <div class="sheet-art">
+            <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--blue)" stroke-width="1.6">
+              <path d="M40 100 C 90 90, 140 110, 190 100 S 260 95, 290 100" stroke="var(--line)"/>
+              <path d="M100 70 L 170 70 L 155 90 L 85 90 Z"/>
+              <path d="M132 70 L132 40" stroke-dasharray="3 3"/>
+              <path d="M110 40 A 40 40 0 0 1 175 26" stroke="var(--orange)" stroke-dasharray="2 4"/>
+              <circle cx="175" cy="26" r="6" fill="var(--orange)" stroke="none"/>
+              <path d="M220 55 a6 6 0 0 1 0 -12 M226 49 a3 3 0 0 1 0 6" stroke="var(--orange)"/>
+              <text x="205" y="72" font-family="IBM Plex Mono" font-size="9" fill="var(--ink-soft)" stroke="none">IoT</text>
+            </svg>
+          </div>
+          <div class="sheet-body">
+            <div class="subtitle">RENEWABLE ENERGY SYSTEM</div>
+            <h3>Sun-Tracking Floating Solar Panel</h3>
+            <ul>
+              <li>Designed, modeled, and built a floating solar panel that tracks the sun to raise energy yield</li>
+              <li>Ran stress, stability, and energy-output calculations to validate performance</li>
+              <li>Built a working IoT dashboard streaming live battery charge and optimal tracking angle</li>
+            </ul>
+          </div>
+          <div class="sheet-foot"><span>SHEET 04/05</span><b>SolidWorks · IoT</b></div>
+        </article>
+
+        <!-- Hurricane sign -->
+        <article class="sheet" style="grid-column:1 / -1;">
+          <div class="sheet-art" style="max-width:340px;">
+            <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--blue)" stroke-width="1.6">
+              <rect x="120" y="18" width="80" height="46"/>
+              <path d="M160 64 L160 100" />
+              <path d="M140 100 h40" stroke-width="2"/>
+              <g stroke="var(--orange)" stroke-width="1.3">
+                <path d="M40 30 h60" /><path d="M92 30 l-8 -5 M92 30 l-8 5"/>
+                <path d="M40 45 h60" /><path d="M92 45 l-8 -5 M92 45 l-8 5"/>
+                <path d="M40 60 h60" /><path d="M92 60 l-8 -5 M92 60 l-8 5"/>
+              </g>
+              <path d="M164 40 q6 6 0 12" stroke="var(--line)" stroke-dasharray="2 3"/>
+            </svg>
+          </div>
+          <div class="sheet-body">
+            <div class="subtitle">STRUCTURAL DESIGN &amp; FEA</div>
+            <h3>Hurricane-Rated Information Sign</h3>
+            <ul>
+              <li>Designed a sign structure to remain standing in hurricane-force winds and keep evacuees informed</li>
+              <li>Modeled in SolidWorks; ran CFD and FEA in Star-CCM+ to determine wind loads on the panel</li>
+              <li>Built and optimized the mesh and boundary conditions, verified using Y+ wall-treatment metrics</li>
+              <li>Designed and validated a support stand against the simulated loads</li>
+            </ul>
+          </div>
+          <div class="sheet-foot"><span>SHEET 05/05</span><b>SolidWorks · Star-CCM+</b></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">Experience</h2></div>
+      <div class="timeline">
+        <div class="trow">
+          <div class="date">SEPT 2023 —<br>SEPT 2024</div>
+          <div class="node"></div>
+          <div>
+            <h3>Process Engineer Co-op</h3>
+            <div class="org">Matcor Metal Fabrication</div>
+            <p>Worked across quality, welding, and process engineering to improve production processes, alongside independent process-improvement projects.</p>
+          </div>
+        </div>
+        <div class="trow">
+          <div class="date">JULY 2022 —<br>JULY 2023</div>
+          <div class="node"></div>
+          <div>
+            <h3>Light Industrial Packer</h3>
+            <div class="org">Randstad</div>
+            <p>Handled warehouse packing, picking, and record-keeping under strict safety standards.</p>
+          </div>
+        </div>
+        <div class="trow">
+          <div class="date">JAN 2018 —<br>AUG 2018</div>
+          <div class="node"></div>
+          <div>
+            <h3>Shift Manager</h3>
+            <div class="org">King Pizza &amp; Submarine</div>
+            <p>Ran shifts and inventory while improving the shop's efficiency and reputation.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vol-line"><span class="k">VOLUNTEER —</span>Blood donation camps, tree plantations, soup kitchens</div>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section class="section alt" id="vision">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">How I Approach Engineering</h2></div>
+      <div class="callout">
+        <p>Creativity, lifelong learning, and problem-solving are the three ideals I design around — they're what pulled me toward mechanical engineering in the first place, and what I think lets an engineer see a problem that others miss.</p>
+        <p class="small">I want to keep building fluency outside my own discipline too — the business, marketing, and manufacturing sides of a product — so I can work every station of the process, not just one, and help a design actually reach the people it's meant for.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">Let's Talk</h2></div>
+          <p class="contact-copy">Open to co-op, internship, and new-grad mechanical engineering roles. Fastest way to reach me is email.</p>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="mailto:jasvineet16@gmail.com">jasvineet16@gmail.com</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/jasvineet-singh-387011240/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>JASVINEET SINGH — MECHANICAL ENGINEERING</span>
+    <span>TORONTO, ON</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var menuBtn = document.getElementById('menuBtn');
+    var navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', function(){
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ navLinks.classList.remove('open'); });
+    });
+
+    var toggle = document.getElementById('themeToggle');
+    var label = document.getElementById('themeLabel');
+    var root = document.documentElement;
+
+    function applyTheme(mode){
+      if(mode === 'dark'){
+        root.setAttribute('data-theme','dark');
+        label.textContent = 'PAPER MODE';
+      } else if (mode === 'light'){
+        root.setAttribute('data-theme','light');
+        label.textContent = 'BLUEPRINT MODE';
+      } else {
+        root.removeAttribute('data-theme');
+        label.textContent = 'BLUEPRINT MODE';
+      }
+    }
+
+    var saved = null;
+    try { saved = localStorage.getItem('jsingh-theme'); } catch(e){}
+    if(saved) applyTheme(saved);
+
+    toggle.addEventListener('click', function(){
+      var current = root.getAttribute('data-theme');
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var effectiveDark = current === 'dark' || (!current && prefersDark);
+      var next = effectiveDark ? 'light' : 'dark';
+      applyTheme(next);
+      try { localStorage.setItem('jsingh-theme', next); } catch(e){}
+    });
+  })();
+</script>
+
+</body>
+</html>
